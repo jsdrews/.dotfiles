@@ -8,3 +8,5 @@
 
 fish/fish_variables
 fish/local_config.fish
+
+nvim/plugin/*
