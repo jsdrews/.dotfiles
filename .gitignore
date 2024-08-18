@@ -2,4 +2,9 @@
 
 !nvim/
 !fish/
+!.pythonrc
 !.gitignore
+!README.md
+
+fish/fish_variables
+fish/local_config.fish

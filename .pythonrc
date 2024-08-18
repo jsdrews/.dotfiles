@@ -1,0 +1,67 @@
+from __future__ import annotations
+from dataclasses import dataclass
+
+# STDLIB ##########################
+import os
+import sys
+import re
+import json
+import pickle
+import functools
+import importlib
+from typing import Any, Type, Optional
+from uuid import uuid4
+from pprint import pprint as pp
+from subprocess import Popen, PIPE
+
+
+# TAB COMPLETE ####################
+import readline
+import rlcompleter
+
+readline.parse_and_bind("tab: complete")
+
+
+# PS1 #############################
+sys.ps1 = "<python{0}.{1}.{2}> ".format(*sys.version_info[:3])
+
+
+# UTILITY FUNCS ###################
+def requires(*import_list):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for imp in import_list:
+                try:
+                    # if imp not in sys.modules:
+                    mod = __import__(imp, globals=globals())
+                    globals()[imp] = mod
+                except ImportError as err:
+                    formatted_imp_list = ", ".join(
+                        ["<{}>".format(x) for x in import_list]
+                    )
+                    raise AssertionError(
+                        "One/Some/All of [{}] are missing: {}".format(
+                            formatted_imp_list, err
+                        )
+                    )
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+@requires("os")
+def cls():
+    os.system("clear")
+
+
+@requires("os")
+def clear():
+    os.system("clear")
+
+
+@requires("uuid")
+def hexify():
+    return uuid4().hex
+
