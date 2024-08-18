@@ -60,6 +60,11 @@ set -gx PYRC "$HOME/.config/.pythonrc"
 alias pyrc="code $PYRC"
 alias py="python -i $PYRC"
 
+# LOCAL (NO COMMIT)
+if test -f "$HOME/.config/fish/local_config.fish"
+    source "$HOME/.config/fish/local_config.fish"
+end
+
 # END
 starship init fish | source
 direnv hook fish | source
