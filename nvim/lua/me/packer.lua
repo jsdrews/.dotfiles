@@ -4,7 +4,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
+
   use 'wbthomason/packer.nvim'
 
   use {
@@ -13,13 +13,6 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
---  use({ 
---	  'rose-pine/neovim',
---	  as = 'rose-pine',
---	  config = function()
---		  vim.cmd('colorscheme rose-pine')
---	  end
---  })
   use { "catppuccin/nvim", as = "catppuccin" }
 
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -37,11 +30,6 @@ return require('packer').startup(function(use)
   use({'williamboman/mason.nvim'})
   use({'williamboman/mason-lspconfig.nvim'})
 
-  --use ({
-  --    'nvim-tree/nvim-tree.lua',
-  --    requires = {
-  --        'nvim-tree/nvim-web-devicons',
-  --    },
-  --})
+  use({"stevearc/conform.nvim"})
 
 end)

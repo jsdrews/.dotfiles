@@ -1,23 +1,23 @@
 from __future__ import annotations
-from dataclasses import dataclass
+
+import functools
+import importlib
+import json
 
 # STDLIB ##########################
 import os
-import sys
-import re
-import json
 import pickle
-import functools
-import importlib
-from typing import Any, Type, Optional
-from uuid import uuid4
-from pprint import pprint as pp
-from subprocess import Popen, PIPE
-
+import re
 
 # TAB COMPLETE ####################
 import readline
 import rlcompleter
+import sys
+from dataclasses import dataclass
+from pprint import pprint as pp
+from subprocess import PIPE, Popen
+from typing import Any, Optional, Type
+from uuid import uuid4
 
 readline.parse_and_bind("tab: complete")
 
