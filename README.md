@@ -27,3 +27,9 @@ These are some of my personal config items.
 
 ##### Auto Formatting
 * [Conform](https://github.com/stevearc/conform.nvim)
+
+### How I Learned
+
+* [Vim As Your Editor](https://www.youtube.com/watch?v=X6AR2RMB5tE&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R)
+* [Vim Motions & Tricks I Wish I Learned Sooner](https://youtu.be/RdyfT2dbt78?si=yePHehhYMw4h1Flh)
+

@@ -21,6 +21,7 @@ alias vra="nvim ~/.config/fish/config.fish"
 alias pp="python -m json.tool"
 alias listen="sudo lsof -i -P -n | grep LISTEN"
 alias l="ls -altr --color=auto"
+alias conf='bash -c "cd ~/.config/nvim && nvim ."' 
 
 # TROUBLESHOOTING
 alias curl="curl -L"
