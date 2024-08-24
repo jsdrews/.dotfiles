@@ -22,6 +22,8 @@ alias pp="python -m json.tool"
 alias listen="sudo lsof -i -P -n | grep LISTEN"
 alias l="ls -altr --color=auto"
 alias conf='bash -c "cd ~/.config/nvim && nvim ."' 
+alias .config="cd ~/.config"
+alias .local="cd ~/.local"
 
 # TROUBLESHOOTING
 alias curl="curl -L"
