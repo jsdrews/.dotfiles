@@ -5,6 +5,7 @@
 !.pythonrc
 !.gitignore
 !README.md
+!tmux/
 
 fish/fish_variables
 fish/local_config.fish
