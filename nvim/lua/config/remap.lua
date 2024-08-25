@@ -1,5 +1,6 @@
 -- Filebrowser
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "[E]xplore the filebrowser" })
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "[E]xplore the filebrowser" })
+vim.keymap.set("n", "<leader>e", ":Neotree<CR>", { desc = "[E]xplore the filesystem" })
 
 -- Indent
 vim.opt.tabstop = 4

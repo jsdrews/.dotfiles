@@ -1,0 +1,15 @@
+live_config_reload = true
+
+import = [
+    "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[window]
+dimensions = { columns = 125, lines = 40 }
+
+[font]
+size = 18
+normal = { family = "Hack Nerd Font", style = "Regular" }
+# normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+# normal = { family = "UbuntuMono Nerd Font", style = "Regular" }
+

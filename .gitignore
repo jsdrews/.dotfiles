@@ -6,6 +6,8 @@
 !.gitignore
 !README.md
 !tmux/
+!alacritty/
+!my_fonts/
 
 fish/fish_variables
 fish/local_config.fish
