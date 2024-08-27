@@ -28,6 +28,7 @@ alias conf='bash -c "cd ~/.config/nvim && nvim ."'
 alias .config="cd ~/.config"
 alias .local="cd ~/.local"
 alias tm="tmux"
+alias tconf="nvim ~/.config/tmux/tmux.conf"
 
 # TROUBLESHOOTING
 alias curl="curl -L"
