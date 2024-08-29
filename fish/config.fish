@@ -30,6 +30,7 @@ alias .local="cd ~/.local"
 alias tm="tmux"
 alias tconf="nvim ~/.config/tmux/tmux.conf"
 alias lg="lazygit"
+fzf --fish | source
 
 # TROUBLESHOOTING
 alias curl="curl -L"
