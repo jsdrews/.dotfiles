@@ -32,6 +32,8 @@ alias tconf="nvim ~/.config/tmux/tmux.conf"
 alias lg="lazygit"
 # fzf --fish | source
 # alias f="fzf --tmux 80%"
+# curl cht.sh/golang/slice
+# curl cht.sh/{language}/query+string
 
 # TROUBLESHOOTING
 alias curl="curl -L"

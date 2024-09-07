@@ -2,3 +2,4 @@
 .config/fish/local_config.fish
 .config/nvim/plugin/*
 .config/tmux/plugins/*
+build/
