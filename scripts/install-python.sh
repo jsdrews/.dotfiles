@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# TODO:Look into:
+# https://gregoryszorc.com/docs/python-build-standalone/main/
+# https://github.com/indygreg/python-build-standalone?tab=readme-ov-file
+
 set -e
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -35,6 +39,7 @@ if [ -d $PYTHON_BUILD ]; then
 fi
 echo "Extracting $TAR_BALL"
 tar xf $TAR_BALL -C $BUILD_DIR
+rm -f $TAR_BALL
 
 # Build
 cd $PYTHON_BUILD
