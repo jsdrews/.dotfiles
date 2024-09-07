@@ -17,13 +17,20 @@ tasks:
     cmds:
       - task: build:go
       - task: build:goimports
-      - task: build:nvim
+      - task: build:nvim-0.9.5
       - task: build:python3.10
+      - task: link 
     silent: true
 
   lite:
     desc: Run all tasks but, skip build + install of go, python (assumes already installed)
     cmds:
       - task: build:goimports
+      - task: link 
     silent: true
 
+  link:
+    desc: Links the items in this directory to their corresponding $HOME locations
+    cmds:
+      - ./scripts/link_items.sh
+    silent: true
