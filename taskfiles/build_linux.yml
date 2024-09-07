@@ -1,0 +1,78 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  nix:
+    desc: installs nix
+    cmds:
+      - sh <(curl -L https://nixos.org/nix/install) --daemon  # --no-daemon for singleuser installs
+    status:
+      - command -v nix
+
+  nvim-0.9.5:
+    desc: installs nvim
+    cmds:
+      - curl -s -L -o $BUILD_DIR/nvim-0.9.5.tar.gz https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/nvim-linux64.tar.gz 
+      - tar -xvf $BUILD_DIR/nvim-0.9.5.tar.gz -C $BUILD_DIR
+      - ln -sf $BUILD_DIR/nvim-linux/bin/nvim $INSTALL_DIR/nvim
+      - rm -rf $BUILD_DIR/nvim-0.9.5.tar.gz
+    env:
+      BUILD_DIR: build
+      INSTALL_DIR: "{{ .HOME }}/.local/bin"
+      NVIM_VERSION: 0.9.5
+    status:
+      - command -v nvim
+
+  go:
+    desc: installs go
+    cmds:
+      - scripts/install-go.sh
+    env:
+      BUILD_DIR: build
+      INSTALL_DIR: "{{ .HOME }}/.local/bin"
+      GO_VERSION: 1.23.1
+      GO_PLATFORM_ARCH: linux-amd64
+    status:
+      - command -v go
+
+  goimports:
+    desc: install goimports
+    cmds:
+      - go install golang.org/x/tools/cmd/goimports@latest
+    env:
+      GOBIN: "{{ .HOME }}/.local/bin"
+    preconditions:
+      - command -v go
+    status:
+      - command -v goimports
+
+  python3.10:
+    desc: install python
+    cmds:
+      - scripts/install-python.sh
+    env:
+      BUILD_DIR: build
+      INSTALL_DIR: "{{ .HOME }}/.local"
+      PYTHON_VERSION: 3.10.15
+    preconditions:
+      - command -v make
+      - command -v clang
+      - command -v g++
+    status:
+      - command -v python3
+
+  pipx:
+    desc: install pipx 
+    cmds:
+      - python3 -m venv $BUILD_DIR/pipx-venv
+      - $BUILD_DIR/pipx-venv/bin/python3 -m pip install pipx 
+      - ln -s $BUILD_DIR/pipx-venv/bin/pipx $INSTALL_DIR/pipx
+    env:
+      BUILD_DIR: build
+      INSTALL_DIR: "{{ .HOME }}/.local/bin"
+    preconditions:
+      - command -v python3 
+    status:
+      - command -v pipx
+
