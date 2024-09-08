@@ -15,7 +15,7 @@ tasks:
     cmds:
       - curl -s -L -o $BUILD_DIR/nvim-0.9.5.tar.gz https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/nvim-linux64.tar.gz 
       - tar -xvf $BUILD_DIR/nvim-0.9.5.tar.gz -C $BUILD_DIR
-      - ln -sf $BUILD_DIR/nvim-linux/bin/nvim $INSTALL_DIR/nvim
+      - ln -sf $BUILD_DIR/nvim-linux64/bin/nvim $INSTALL_DIR/nvim
       - rm -rf $BUILD_DIR/nvim-0.9.5.tar.gz
     env:
       BUILD_DIR: build
