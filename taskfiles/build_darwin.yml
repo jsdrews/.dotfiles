@@ -7,6 +7,8 @@ tasks:
     desc: installs nix
     cmds:
       - sh <(curl -L https://nixos.org/nix/install) --daemon  # --no-daemon for singleuser installs
+    preconditions:
+      - command -v curl
     status:
       - command -v nix
 
@@ -21,6 +23,8 @@ tasks:
       BUILD_DIR: build
       INSTALL_DIR: "{{ .HOME }}/.local/bin"
       NVIM_VERSION: 0.9.5
+    preconditions:
+      - command -v curl
     status:
       - command -v nvim
 
@@ -33,6 +37,8 @@ tasks:
       INSTALL_DIR: "{{ .HOME }}/.local/bin"
       GO_VERSION: 1.23.1
       GO_PLATFORM_ARCH: darwin-arm64
+    preconditions:
+      - command -v curl
     status:
       - command -v go
 
@@ -47,6 +53,17 @@ tasks:
     status:
       - command -v goimports
 
+  rust:
+    desc: install rust
+    cmds:
+      - curl https://sh.rustup.rs -sSf | sh
+    # - rustup self uninstall <- to uninstall
+    preconditions:
+      - command -v curl
+    status:
+      - command -v cargo
+      - command -v rustup
+
   python3.10:
     desc: install python
     cmds:
@@ -59,6 +76,7 @@ tasks:
       - command -v make
       - command -v clang
       - command -v g++ 
+      - command -v curl
     status:
       - command -v python3
 
@@ -76,3 +94,20 @@ tasks:
     status:
       - command -v pipx
 
+  zellij:
+    desc: install zellij
+    cmds:
+      - cargo install --locked zellij
+    preconditions:
+      - command -v cargo
+    status:
+      - command -v zellij
+
+  ripgrep:
+    desc: install ripgrep
+    cmds:
+      - cargo install ripgrep
+    preconditions:
+      - command -v cargo
+    status:
+      - command -v ripgrep

@@ -19,6 +19,8 @@ tasks:
       - task: build:goimports
       - task: build:nvim-0.9.5
       - task: build:python3.10
+      - task: build:rust
+      - task: build:zellij
       - task: link 
     silent: true
 
@@ -26,6 +28,7 @@ tasks:
     desc: Run all tasks but, skip build + install of go, python (assumes already installed)
     cmds:
       - task: build:goimports
+      - task: build:zellij
       - task: link 
     silent: true
 
