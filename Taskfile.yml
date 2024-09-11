@@ -15,6 +15,8 @@ tasks:
   all:
     desc: Run all tasks (build + install go, python, etc)
     cmds:
+      - task: build:starship-prompt
+      - task: build:direnv
       - task: build:go
       - task: build:goimports
       - task: build:nvim-0.9.5
@@ -27,6 +29,8 @@ tasks:
   lite:
     desc: Run all tasks but, skip build + install of go, python (assumes already installed)
     cmds:
+      - task: build:starship-prompt
+      - task: build:direnv
       - task: build:goimports
       - task: build:zellij
       - task: link 

@@ -3,6 +3,28 @@
 version: '3'
 
 tasks:
+  starship-prompt:
+    desc: installs starship prompt
+    cmds:
+      - curl -sS https://starship.rs/install.sh | sh
+    env:
+      BIN_DIR: "{{ .HOME }}/.local/bin" 
+    preconditions:
+      - command -v curl
+    status:
+      - command -v starship
+
+  direnv:
+    desc: installs direnv
+    cmds:
+      - curl -sfL https://direnv.net/install.sh | bash
+    env:
+      bin_path: "{{ .HOME }}/.local/bin" 
+    preconditions:
+      - command -v curl
+    status:
+      - command -v direnv
+
   nix:
     desc: installs nix
     cmds:
