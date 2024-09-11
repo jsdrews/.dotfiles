@@ -42,7 +42,7 @@ tasks:
       - ln -sf $BUILD_DIR/nvim-linux64/bin/nvim $INSTALL_DIR/nvim
       - rm -rf $BUILD_DIR/nvim-0.9.5.tar.gz
     env:
-      BUILD_DIR: build
+      BUILD_DIR: "{{ .PWD }}/build"
       INSTALL_DIR: "{{ .HOME }}/.local/bin"
       NVIM_VERSION: 0.9.5
     preconditions:
@@ -55,7 +55,7 @@ tasks:
     cmds:
       - scripts/install-go.sh
     env:
-      BUILD_DIR: build
+      BUILD_DIR: "{{ .PWD }}/build"
       INSTALL_DIR: "{{ .HOME }}/.local/bin"
       GO_VERSION: 1.23.1
       GO_PLATFORM_ARCH: linux-amd64
@@ -102,7 +102,7 @@ tasks:
     cmds:
       - scripts/install-python.sh
     env:
-      BUILD_DIR: build
+      BUILD_DIR: "{{ .PWD }}/build"
       INSTALL_DIR: "{{ .HOME }}/.local"
       PYTHON_VERSION: 3.10.15
     preconditions:
@@ -120,7 +120,7 @@ tasks:
       - $BUILD_DIR/pipx-venv/bin/python3 -m pip install pipx 
       - ln -s $BUILD_DIR/pipx-venv/bin/pipx $INSTALL_DIR/pipx
     env:
-      BUILD_DIR: build
+      BUILD_DIR: "{{ .PWD }}/build"
       INSTALL_DIR: "{{ .HOME }}/.local/bin"
     preconditions:
       - command -v python3 
