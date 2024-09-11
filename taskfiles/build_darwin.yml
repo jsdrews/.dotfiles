@@ -64,6 +64,17 @@ tasks:
     status:
       - command -v go
 
+  lazygit:
+    desc: installs lazygit
+    cmds:
+      - go install github.com/jesseduffield/lazygit@latest
+    env:
+      GOBIN: "{{ .HOME }}/.local/bin"
+    preconditions:
+      - command -v go
+    status:
+      - command -v lazygit
+
   goimports:
     desc: install goimports
     cmds:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command -v go &> /dev/null
+if ! command -v task &> /dev/null
 then
     echo Installing task...
     sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
