@@ -64,6 +64,11 @@ tasks:
     status:
       - command -v go
 
+  git-2.20.5:
+    desc: install git
+    cmds:
+      - https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.20.5.tar.gz
+
   lazygit:
     desc: installs lazygit
     cmds:
@@ -89,7 +94,8 @@ tasks:
   rust:
     desc: install rust
     cmds:
-      - curl https://sh.rustup.rs -sSf | sh
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    # - curl https://sh.rustup.rs -sSf | sh
     # - rustup self uninstall <- to uninstall
     preconditions:
       - command -v curl

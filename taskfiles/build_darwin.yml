@@ -96,7 +96,8 @@ tasks:
   rust:
     desc: install rust
     cmds:
-      - curl https://sh.rustup.rs -sSf | sh
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    # - curl https://sh.rustup.rs -sSf | sh
     # - rustup self uninstall <- to uninstall
     preconditions:
       - command -v curl
