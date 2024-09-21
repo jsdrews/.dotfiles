@@ -1,0 +1,20 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  RUST_VERSION: latest
+
+tasks:
+
+  install:
+    desc: Install rust {{ .RUST_VERSION }}
+    cmds:
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    # - rustup self uninstall <- to uninstall
+    preconditions:
+      - command -v curl
+    status:
+      - command -v cargo
+      - command -v rustup
+

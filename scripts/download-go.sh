@@ -41,6 +41,3 @@ echo "Extracting $TAR_BALL"
 tar xf $TAR_BALL -C $BUILD_DIR
 rm -f $TAR_BALL
 
-# Link it to bin
-ln -sf $BUILD_DIR/go/bin/go $INSTALL_DIR/go
-ln -sf $BUILD_DIR/go/bin/gofmt $INSTALL_DIR/gofmt

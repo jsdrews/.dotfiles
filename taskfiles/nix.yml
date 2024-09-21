@@ -1,0 +1,18 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  NIX_VERSION: latest
+
+tasks:
+
+  install:
+    desc: Installs NIX {{ .NIX_VERSION }} (requires root)
+    cmds:
+      - sh <(curl -L https://nixos.org/nix/install) --daemon  # --no-daemon for singleuser installs
+    preconditions:
+      - command -v curl
+    status:
+      - command -v nix
+

@@ -1,0 +1,15 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_VERSION: 2.20.5
+
+tasks:
+
+  install:
+    desc: Install git {{ .GIT_VERSION }}
+    cmds:
+      - curl https://mirrors.edge.kernel.org/pub/software/scm/git/git-{{ .GIT_VERSION }}.tar.gz
+    preconditions:
+      - command -v curl

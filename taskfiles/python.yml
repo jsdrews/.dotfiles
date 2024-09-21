@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  PYTHON_VERSION: 3.10.15
+  BUILD_DIR: "{{ .PWD }}/build"
+  PY_INSTALL_DIR: "{{ .HOME }}/.local"
+
+tasks:
+
+  install:
+    desc: Install python {{ .PYTHON_VERSION }} in {{ .PY_INSTALL_DIR }}/bin
+    cmds:
+      - scripts/install-python.sh
+    env:
+      BUILD_DIR: "{{ .BUILD_DIR }}"
+      INSTALL_DIR: "{{ .PY_INSTALL_DIR }}"
+      PYTHON_VERSION: "{{ .PYTHON_VERSION }}"
+    preconditions:
+      - command -v make
+      - command -v clang
+      - command -v g++ 
+      - command -v curl
+    status:
+      - command -v python3

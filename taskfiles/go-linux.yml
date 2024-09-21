@@ -1,0 +1,36 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GO_VERSION: 1.23.1
+  GO_PLATFORM_ARCH: darwin-arm64
+  BUILD_DIR: "{{ .PWD }}/build"
+  INSTALL_DIR: "{{ .HOME }}/.local/bin"
+
+tasks:
+
+  download:
+    desc: Download go {{ .GO_VERSION }} to {{ .BUILD_DIR }}
+    cmds:
+      - scripts/download-go.sh
+    env:
+      GO_VERSION: "{{ .GO_VERSION }}"
+      GO_PLATFORM_ARCH: "{{ .GO_PLATFORM_ARCH }}"
+    preconditions:
+      - command -v curl
+    status:
+      - test -f {{ .BUILD_DIR }}/go/bin/go
+
+  link:
+    desc: Link go from {{ .BUILD_DIR }}/go/bin/go -> {{ .INSTALL_DIR }}/go/bin/go
+    deps:
+      - download
+    cmds:
+      - ln -sf {{ .BUILD_DIR }}/go/bin/go {{ .INSTALL_DIR }}/go
+      - ln -sf {{ .BUILD_DIR }}/go/bin/gofmt {{ .INSTALL_DIR }}/gofmt
+
+  install:
+    desc: Download {{ .GO_VERSION }} to {{ .BUILD_DIR }} and link to {{ .INSTALL_DIR }}
+    cmds:
+      - task: link

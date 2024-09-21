@@ -3,27 +3,21 @@
 version: '3'
 
 includes:
-  build: ./taskfiles/build_{{OS}}.yml
+  build: ./taskfiles/build.yml
 
 tasks:
-  default:
-    desc: List all tasks
-    cmds:
-      - task -a
-    silent: true
 
-  all:
+  full:
     desc: Run all tasks (build + install go, python, etc)
     cmds:
       - task: build:starship-prompt
       - task: build:direnv
-      - task: build:go
+      - task: build:go:install
       - task: build:lazygit
       - task: build:goimports
-      - task: build:nvim-0.9.5
-      - task: build:python3.10
-      - task: build:rust
-      - task: build:zellij
+      - task: build:nvim:install
+      - task: build:python:install
+      - task: build:rust:install
       - task: link 
     silent: true
 
@@ -32,14 +26,13 @@ tasks:
     cmds:
       - task: build:starship-prompt
       - task: build:direnv
-      - task: build:lazygit
-      - task: build:goimports
-      - task: build:zellij
       - task: link 
     silent: true
 
   link:
     desc: Links the items in this directory to their corresponding $HOME locations
     cmds:
+      - task build:go:link
+      - task build:nvim:link
       - ./scripts/link_items.sh
     silent: true

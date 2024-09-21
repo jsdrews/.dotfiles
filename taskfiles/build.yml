@@ -1,0 +1,100 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  LOCAL_BIN: "{{ .HOME }}/.local/bin"
+
+includes:
+  go: ./go-{{OS}}.yml
+  nvim: ./nvim-{{OS}}.yml
+  git: ./git.yml
+  python: ./python.yml
+  rust: ./rust.yml
+
+tasks:
+  starship-prompt:install:
+    desc: installs starship prompt
+    cmds:
+      - curl -sS https://starship.rs/install.sh | sh
+    env:
+      BIN_DIR: "{{ .LOCAL_BIN }}" 
+    preconditions:
+      - command -v curl
+    status:
+      - command -v starship
+
+  direnv:install:
+    desc: installs direnv
+    cmds:
+      - curl -sfL https://direnv.net/install.sh | bash
+    env:
+      bin_path: "{{ .LOCAL_BIN }}" 
+    preconditions:
+      - command -v curl
+    status:
+      - command -v direnv
+
+  lazygit:install:
+    desc: install lazygit
+    deps:
+      - go:install
+    cmds:
+      - go install github.com/jesseduffield/lazygit@latest
+    env:
+      GOBIN: "{{ .LOCAL_BIN }}"
+    preconditions:
+      - command -v go
+    status:
+      - command -v lazygit
+
+  goimports:install:
+    desc: install goimports
+    deps:
+      - go:install
+    cmds:
+      - go install golang.org/x/tools/cmd/goimports@latest
+    env:
+      GOBIN: "{{ .LOCAL_BIN }}"
+    preconditions:
+      - command -v go
+    status:
+      - command -v goimports
+
+  pipx:install:
+    desc: install pipx 
+    deps:
+      - python:install
+    cmds:
+      - python3 -m venv $BUILD_DIR/pipx-venv
+      - $BUILD_DIR/pipx-venv/bin/python3 -m pip install pipx 
+      - ln -s $BUILD_DIR/pipx-venv/bin/pipx $INSTALL_DIR/pipx
+    env:
+      BUILD_DIR: "{{ .PWD }}/build"
+      INSTALL_DIR: "{{ .LOCAL_BIN }}"
+    preconditions:
+      - command -v python3 
+    status:
+      - command -v pipx
+
+  zellij:install:
+    desc: install zellij
+    deps:
+      - rust:install
+    cmds:
+      - cargo install --locked zellij
+    preconditions:
+      - command -v cargo
+    status:
+      - command -v zellij
+
+  ripgrep:install:
+    desc: install ripgrep
+    deps:
+      - rust:install
+    cmds:
+      - cargo install ripgrep
+    preconditions:
+      - command -v cargo
+    status:
+      - command -v ripgrep

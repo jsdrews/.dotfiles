@@ -1,0 +1,35 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  NVIM_VERSION: 0.9.5
+  PLATFORM: macos
+  BUILD_DIR: "{{ .PWD }}/build"
+  INSTALL_DIR: "{{ .HOME }}/.local/bin"
+  BUILD_BINARY: "{{ .BUILD_DIR }}/nvim-{{ .PLATFORM }}/bin/nvim"
+
+tasks:
+
+  download:
+    desc: Download nvim {{ .NVIM_VERSION }} to {{ .BUILD_DIR }}
+    cmds:
+      - curl -s -L -o {{ .BUILD_DIR }}/nvim-{{ .NVIM_VERSION }}.tar.gz https://github.com/neovim/neovim/releases/download/v{{ .NVIM_VERSION }}/nvim-{{ .PLATFORM }}.tar.gz 
+      - tar -xvf {{ .BUILD_DIR }}/nvim-{{ .NVIM_VERSION }}.tar.gz -C {{ .BUILD_DIR }}
+      - rm -rf {{ .BUILD_DIR }}/nvim-{{ .NVIM_VERSION }}.tar.gz
+    preconditions:
+      - command -v curl
+    status:
+      - test -f {{ .BUILD_BINARY }}
+
+  link:
+    desc: Links {{ .BUILD_BINARY }} to {{ .INSTALL_DIR }}/nvim
+    deps:
+      - download
+    cmds:
+      - ln -sf {{ .BUILD_BINARY }} {{ .INSTALL_DIR }}/nvim
+
+  install:
+    desc: Download nvim {{ .NVIM_VERSION }} to {{ .BUILD_DIR }} and link to {{ .INSTALL_DIR }}
+    cmds:
+      - task: link
