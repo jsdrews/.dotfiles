@@ -7,25 +7,25 @@ includes:
 
 tasks:
 
-  full:
-    desc: Run all tasks (build + install go, python, etc)
+  all:
+    desc: Install and link everything needed/wanted
     cmds:
-      - task: build:starship-prompt
-      - task: build:direnv
+      - task: build:starship-prompt:install
+      - task: build:direnv:install
       - task: build:go:install
-      - task: build:lazygit
-      - task: build:goimports
+      - task: build:lazygit:install
+      - task: build:goimports:install
       - task: build:nvim:install
       - task: build:python:install
       - task: build:rust:install
-      - task: link 
+      - task: link
     silent: true
 
-  lite:
-    desc: Run all tasks but, skip build + install of go, python (assumes already installed)
+  basic:
+    desc: Install and link the basic set of utilities (assumes nvim, go, etc is installed)
     cmds:
-      - task: build:starship-prompt
-      - task: build:direnv
+      - task: build:starship-prompt:install
+      - task: build:direnv:install
       - task: link 
     silent: true
 

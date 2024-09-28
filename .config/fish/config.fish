@@ -29,6 +29,7 @@ alias .config="cd ~/.config"
 alias .local="cd ~/.local"
 alias tm="tmux"
 alias tconf="nvim ~/.config/tmux/tmux.conf"
+alias zconf="nvim ~/.config/zellij/config.kdl"
 alias lg="lazygit"
 # fzf --fish | source
 # alias f="fzf --tmux 80%"
