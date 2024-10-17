@@ -4,12 +4,26 @@ version: '3'
 
 vars:
   GIT_VERSION: 2.20.5
+  BUILD_DIR: "{{ .PWD }}/build"
+  INSTALL_DIR: "{{ .HOME }}/.local/bin"
 
 tasks:
+
+  download:
+    desc: Download git {{ .GIT_VERSION }}
+    cmds:
+      - curl https://mirrors.edge.kernel.org/pub/software/scm/git/git-{{ .GIT_VERSION }}.tar.gz > {{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}.tar.gz
+      - tar -xvf {{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}.tar.gz -C {{ .BUILD_DIR }}
+      - rm -rf {{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}.tar.gz
+    preconditions:
+      - command -v curl
+    #status:
+    #  - test -f {{ .BUILD_BINARY }}
 
   install:
     desc: Install git {{ .GIT_VERSION }}
     cmds:
-      - curl https://mirrors.edge.kernel.org/pub/software/scm/git/git-{{ .GIT_VERSION }}.tar.gz
-    preconditions:
-      - command -v curl
+      - make prefix={{ .INSTALL_DIR }}
+      - make prefix={{ .INSTALL_DIR }} install
+
+
