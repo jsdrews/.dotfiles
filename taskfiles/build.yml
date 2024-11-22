@@ -38,7 +38,7 @@ tasks:
   lazygit:install:
     desc: install lazygit
     deps:
-      - go:install
+      - go:link
     cmds:
       - go install github.com/jesseduffield/lazygit@latest
     env:
@@ -51,7 +51,7 @@ tasks:
   goimports:install:
     desc: install goimports
     deps:
-      - go:install
+      - go:link
     cmds:
       - go install golang.org/x/tools/cmd/goimports@latest
     env:
