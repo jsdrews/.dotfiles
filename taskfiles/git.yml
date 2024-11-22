@@ -38,7 +38,7 @@ tasks:
     deps:
      - build
     cmds:
-      - ls -s {{ .BUILD_BINARY }} {{ .INSTALL_BINARY }}
+      - ls -sf {{ .BUILD_BINARY }} {{ .INSTALL_BINARY }}
     status:
       - test -f {{ .INSTALL_BINARY }}
 
