@@ -31,7 +31,7 @@ tasks:
       - make prefix={{ .INSTALL_DIR }}
       - make prefix={{ .INSTALL_DIR }} install
     status:
-      - test -f {{ .BUILD_BINARY }}
+      - test -f git
 
   link:
     desc: Link git to {{ .INSTALL_DIR }}
