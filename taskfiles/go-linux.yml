@@ -4,7 +4,7 @@ version: '3'
 
 vars:
   GO_VERSION: 1.23.1
-  GO_PLATFORM_ARCH: darwin-arm64
+  GO_PLATFORM_ARCH: linux-amd64
   BUILD_DIR: "{{ .PWD }}/build"
   INSTALL_DIR: "{{ .HOME }}/.local/bin"
 
@@ -15,6 +15,8 @@ tasks:
     cmds:
       - scripts/download-go.sh
     env:
+      BUILD_DIR: "{{ .BUILD_DIR }}"
+      INSTALL_DIR: "{{ .INSTALL_DIR }}"
       GO_VERSION: "{{ .GO_VERSION }}"
       GO_PLATFORM_ARCH: "{{ .GO_PLATFORM_ARCH }}"
     preconditions:
