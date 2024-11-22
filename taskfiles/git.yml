@@ -38,7 +38,7 @@ tasks:
     deps:
      - build
     cmds:
-      - ls -sf {{ .GIT_BUILD_BINARY }} {{ .GIT_INSTALL_BINARY }}
+      - ln -sf {{ .GIT_BUILD_BINARY }} {{ .GIT_INSTALL_BINARY }}
     status:
       - test -f {{ .GIT_INSTALL_BINARY }}
 
