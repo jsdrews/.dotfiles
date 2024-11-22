@@ -7,7 +7,7 @@ vars:
   PLATFORM: linux64
   BUILD_DIR: "{{ .PWD }}/build"
   INSTALL_DIR: "{{ .HOME }}/.local/bin"
-  BUILD_BINARY: "{{ .BUILD_DIR }}/nvim-{{ .PLATFORM }}/bin/nvim"
+  NVIM_BUILD_BINARY: "{{ .BUILD_DIR }}/nvim-{{ .PLATFORM }}/bin/nvim"
 
 tasks:
 
@@ -23,11 +23,11 @@ tasks:
       - test -f "{{ .BUILD_DIR }}/nvim-{{ .PLATFORM }}"
 
   link:
-    desc: Links {{ .BUILD_BINARY }} to {{ .INSTALL_DIR }}/nvim
+    desc: Links {{ .NVIM_BUILD_BINARY }} to {{ .INSTALL_DIR }}/nvim
     deps:
       - download
     cmds:
-      - ln -sf {{ .BUILD_BINARY }} {{ .INSTALL_DIR }}/nvim
+      - ln -sf {{ .NVIM_BUILD_BINARY }} {{ .INSTALL_DIR }}/nvim
     status:
       - test -f {{ .INSTALL_DIR }}/nvim
 

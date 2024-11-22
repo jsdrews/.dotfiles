@@ -5,9 +5,9 @@ version: '3'
 vars:
   GIT_VERSION: 2.20.5
   BUILD_DIR: "{{ .PWD }}/build"
-  BUILD_BINARY: "{{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}/git"
+  GIT_BUILD_BINARY: "{{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}/git"
   INSTALL_DIR: "{{ .HOME }}/.local/bin"
-  INSTALL_BINARY: "{{ .INSTALL_DIR }}/git"
+  GIT_INSTALL_BINARY: "{{ .INSTALL_DIR }}/git"
 
 tasks:
 
@@ -38,7 +38,7 @@ tasks:
     deps:
      - build
     cmds:
-      - ls -sf {{ .BUILD_BINARY }} {{ .INSTALL_BINARY }}
+      - ls -sf {{ .GIT_BUILD_BINARY }} {{ .GIT_INSTALL_BINARY }}
     status:
-      - test -f {{ .INSTALL_BINARY }}
+      - test -f {{ .GIT_INSTALL_BINARY }}
 
