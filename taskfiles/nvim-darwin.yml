@@ -28,8 +28,6 @@ tasks:
       - download
     cmds:
       - ln -sf {{ .BUILD_BINARY }} {{ .INSTALL_DIR }}/nvim
+    status:
+      - test -f {{ .INSTALL_DIR }}/nvim
 
-  install:
-    desc: Download nvim {{ .NVIM_VERSION }} to {{ .BUILD_DIR }} and link to {{ .INSTALL_DIR }}
-    cmds:
-      - task: link

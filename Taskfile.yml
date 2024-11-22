@@ -26,13 +26,16 @@ tasks:
     cmds:
       - task: build:starship-prompt:install
       - task: build:direnv:install
+      - task: build:go:link
+      - task: build:nvim:link
+      - task: build:git:link
+      - task: build:lazygit:install
+      - task: build:goimports:install
       - task: link 
     silent: true
 
   link:
     desc: Links the items in this directory to their corresponding $HOME locations
     cmds:
-      - task build:go:link
-      - task build:nvim:link
       - ./scripts/link_items.sh
     silent: true

@@ -5,7 +5,9 @@ version: '3'
 vars:
   GIT_VERSION: 2.20.5
   BUILD_DIR: "{{ .PWD }}/build"
+  BUILD_BINARY: "{{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}/git"
   INSTALL_DIR: "{{ .HOME }}/.local/bin"
+  INSTALL_BINARY: "{{ .INSTALL_DIR }}/git"
 
 tasks:
 
@@ -17,14 +19,26 @@ tasks:
       - rm -rf {{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}.tar.gz
     preconditions:
       - command -v curl
-    #status:
-    #  - test -f {{ .BUILD_BINARY }}
+    status:
+      - test -f {{ .INSTALL_BINARY }}
 
-  install:
-    desc: Install git {{ .GIT_VERSION }}
+  build:
+    desc: Build git {{ .GIT_VERSION }}
     dir: "{{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}"
+    deps:
+      - download
     cmds:
       - make prefix={{ .INSTALL_DIR }}
       - make prefix={{ .INSTALL_DIR }} install
+    status:
+      - test -f {{ .BUILD_BINARY }}
 
+  link:
+    desc: Link git to {{ .INSTALL_DIR }}
+    deps:
+     - build
+    cmds:
+      - ls -s {{ .BUILD_BINARY }} {{ .INSTALL_BINARY }}
+    status:
+      - test -f {{ .INSTALL_BINARY }}
 
