@@ -22,6 +22,7 @@ tasks:
 
   install:
     desc: Install git {{ .GIT_VERSION }}
+    dir: "{{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}"
     cmds:
       - make prefix={{ .INSTALL_DIR }}
       - make prefix={{ .INSTALL_DIR }} install
