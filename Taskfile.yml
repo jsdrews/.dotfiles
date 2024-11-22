@@ -7,7 +7,7 @@ includes:
 
 tasks:
 
-  basic:
+  up:
     desc: Install and link the basic set of utilities (assumes nvim, go, etc is installed)
     cmds:
       - task: build:starship-prompt:install
