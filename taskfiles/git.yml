@@ -20,7 +20,7 @@ tasks:
     preconditions:
       - command -v curl
     status:
-      - test -f {{ .INSTALL_BINARY }}
+      - test -d {{ .BUILD_DIR }}/git-{{ .GIT_VERSION }}
 
   build:
     desc: Build git {{ .GIT_VERSION }}
