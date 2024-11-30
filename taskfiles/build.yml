@@ -98,3 +98,9 @@ tasks:
       - command -v cargo
     status:
       - command -v ripgrep
+
+  tpm:install:
+    desc: install tmux package manager
+    cmds:
+      - git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
