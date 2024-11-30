@@ -79,6 +79,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # services.dockerd.enable = true;
+  environment.localBinInPath = true;
   virtualisation.docker.enable = true;
   programs.fish.enable = true;
   users.users.andrewsj = {

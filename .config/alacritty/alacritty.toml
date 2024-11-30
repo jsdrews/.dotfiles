@@ -7,6 +7,9 @@ import = [
 [window]
 dimensions = { columns = 125, lines = 40 }
 
+[mouse]
+hide_when_typing = false
+
 [font]
 size = 18
 normal = { family = "Hack Nerd Font", style = "Regular" }
